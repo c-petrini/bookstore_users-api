@@ -3,7 +3,7 @@ module github.com/c-petrini/bookstore_users-api
 go 1.13
 
 require (
-	github.com/federicoleon/bookstore_users-api v0.0.0-20200406070935-c8e352aed46b // indirect
+	github.com/federicoleon/bookstore_users-api v0.0.0-20200406070935-c8e352aed46b
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.3.0 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect

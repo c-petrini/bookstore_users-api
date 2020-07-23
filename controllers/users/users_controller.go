@@ -3,6 +3,7 @@ package users
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/c-petrini/bookstore_users-api/domain/users"
 	"github.com/c-petrini/bookstore_users-api/services"
@@ -30,7 +31,17 @@ func CreateUser(c *gin.Context) {
 }
 
 func GetUser(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "implement me")
+	userID, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
+	if userErr != nil {
+		err := errors.NewBadRequestError("invalid user id")
+		c.JSON(err.Status, err)
+		return
+	}
+	user, getErr := services.GetUser(userID)
+	if getErr != nil {
+		c.JSON(getErr.Status, getErr)
+	}
+	c.JSON(http.StatusOK, user)
 }
 
 func SearchUser(c *gin.Context) {
